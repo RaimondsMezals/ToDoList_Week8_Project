@@ -12,27 +12,23 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class ToDoList {
+public class Bag {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotNull
-	private String itemName;
-	@NotNull
-	private Double price;
+	private String listName;
 
-	public ToDoList(Long id, @NotNull String itemName, @NotNull Double price) {
+	public Bag(Long id, @NotNull String listName) {
 		super();
 		this.id = id;
-		this.itemName = itemName;
-		this.price = price;
+		this.listName = listName;
 	}
 
-	public ToDoList(@NotNull String itemName, @NotNull Double price) {
+	public Bag(@NotNull String listName) {
 		super();
-		this.itemName = itemName;
-		this.price = price;
+		this.listName = listName;
 	}
 
 }
