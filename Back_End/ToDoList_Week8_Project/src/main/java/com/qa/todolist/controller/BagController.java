@@ -9,26 +9,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.todolist.dto.ToDoListDto;
-import com.qa.todolist.persistance.domain.ToDoList;
-import com.qa.todolist.service.ToDoListService;
+import com.qa.todolist.dto.BagDto;
+import com.qa.todolist.persistance.domain.Bag;
+import com.qa.todolist.service.BagService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/todolist")
-public class ToDoListController {
+@RequestMapping("/bag")
+public class BagController {
 
-	private ToDoListService service;
+	private BagService service;
 
 	@Autowired
-	public ToDoListController(ToDoListService service) {
+	public BagController(BagService service) {
 		super();
 		this.service = service;
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<ToDoListDto> create(@RequestBody ToDoList tDList) {
-		ToDoListDto created = this.service.create(tDList);
+	public ResponseEntity<BagDto> create(@RequestBody Bag bag) {
+		BagDto created = this.service.create(bag);
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
 	}
 
