@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,6 +45,12 @@ public class BagController {
 	@GetMapping("/read/{id}")
 	public ResponseEntity<BagDto> readOne(@PathVariable Long id) {
 		return ResponseEntity.ok(this.service.readById(id));
+	}
+
+	@PutMapping("/update/{id}")
+	public ResponseEntity<BagDto> update(@PathVariable Long id, @RequestBody BagDto bagDto) {
+
+		return new ResponseEntity<>(this.service.update(bagDto, id), HttpStatus.ACCEPTED);
 	}
 
 }

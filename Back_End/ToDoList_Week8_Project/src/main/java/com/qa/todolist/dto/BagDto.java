@@ -18,4 +18,17 @@ public class BagDto {
 		this.listName = listName;
 	}
 
+	public BagDto(String listName) {
+		super();
+		this.listName = listName;
+	}
+
+	public String getListName() {
+		return listName;
+	}
+
+	public void setListName(String listName) {
+		this.listName = listName;
+	}
+
 }
