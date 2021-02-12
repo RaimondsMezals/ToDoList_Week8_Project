@@ -18,4 +18,9 @@ public class BagDto {
 		this.listName = listName;
 	}
 
+	public BagDto(String listName) {
+		super();
+		this.listName = listName;
+	}
+
 }
