@@ -54,4 +54,9 @@ public class BagService {
 		return this.mapToDTO(this.repo.save(toUpdate));
 	}
 
+	public boolean delete(Long id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
+	}
+
 }
