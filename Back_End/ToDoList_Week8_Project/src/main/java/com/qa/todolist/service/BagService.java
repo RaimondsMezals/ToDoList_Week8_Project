@@ -38,4 +38,8 @@ public class BagService {
 
 	}
 
+	public BagDto readById(Long id) {
+		return this.mapToDTO(this.repo.findById(id).orElseThrow());
+	}
+
 }
