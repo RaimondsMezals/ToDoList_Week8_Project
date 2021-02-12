@@ -1,5 +1,8 @@
 package com.qa.todolist.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +13,7 @@ public class BagDto {
 	private Long id;
 	private String listName;
 
-	// private List<ItemsDto> items = new ArrayList<>();
+	private List<ItemDto> items = new ArrayList<>();
 
 	public BagDto(Long id, String listName) {
 		super();

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.qa.todolist.dto.ItemDto;
 import com.qa.todolist.persistance.domain.Item;
 import com.qa.todolist.persistance.repo.ItemRepo;
+import com.qa.todolist.utils.SpringBeanUtil;
 
 @Service
 public class ItemService {
@@ -40,6 +41,17 @@ public class ItemService {
 
 	public ItemDto readById(Long id) {
 		return this.mapToDTO(this.repo.findById(id).orElseThrow());
+	}
+
+	public ItemDto update(ItemDto itemDto, Long id) {
+
+		Item toUpdate = this.repo.findById(id).orElseThrow();
+
+		toUpdate.setItemName(itemDto.getItemName());
+
+		SpringBeanUtil.mergeNotNull(itemDto, toUpdate);
+
+		return this.mapToDTO(this.repo.save(toUpdate));
 	}
 
 }
