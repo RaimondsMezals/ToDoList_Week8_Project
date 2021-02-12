@@ -38,4 +38,8 @@ public class ItemService {
 
 	}
 
+	public ItemDto readById(Long id) {
+		return this.mapToDTO(this.repo.findById(id).orElseThrow());
+	}
+
 }
