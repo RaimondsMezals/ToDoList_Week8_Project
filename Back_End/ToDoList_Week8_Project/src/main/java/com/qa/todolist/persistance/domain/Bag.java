@@ -31,13 +31,13 @@ public class Bag {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Item> items;
 
-	public Bag(Long id, @NotNull String listName) {
+	public Bag(Long id, String listName) {
 		super();
 		this.id = id;
 		this.listName = listName;
 	}
 
-	public Bag(@NotNull String listName) {
+	public Bag(String listName) {
 		super();
 		this.listName = listName;
 	}
