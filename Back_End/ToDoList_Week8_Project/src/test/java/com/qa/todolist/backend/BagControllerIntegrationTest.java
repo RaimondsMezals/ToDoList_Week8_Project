@@ -1,5 +1,7 @@
 package com.qa.todolist.backend;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
@@ -16,8 +18,6 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.todolist.dto.BagDto;
@@ -54,23 +54,17 @@ public class BagControllerIntegrationTest {
 
 	@Test
 	void createTest() throws Exception {
-		BagDto testDto = mapToDTO(new Bag("TestList"));
-		String testDTOAsJSON = this.jsonifier.writeValueAsString(testDto);
-
-		RequestBuilder request = MockMvcRequestBuilders.post(URI + "/create").content(testDTOAsJSON)
-				.contentType(MediaType.APPLICATION_JSON);
-
+		// RESOURCES
+		Bag testDomain = new Bag("ShoppingList");
+		BagDto testDto = mapToDTO(testDomain);
+		testDto.setId(5L);
+		RequestBuilder request = post(URI + "/create").contentType(MediaType.APPLICATION_JSON)
+				.content(this.jsonifier.writeValueAsString(testDomain));
+		// ASSERTIONS
 		ResultMatcher checkStatus = status().isCreated();
-
-		BagDto testSavedDto = mapToDTO(new Bag("TestList"));
-
-		testSavedDto.setId(5L);
-		String TestSavedDtoAsJson = this.jsonifier.writeValueAsString(testSavedDto);
-
-		ResultMatcher checkBody = MockMvcResultMatchers.content().json(TestSavedDtoAsJson);
-
+		ResultMatcher checkBody = content().json(this.jsonifier.writeValueAsString(testDto));
+		// ACTION
 		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
-
 	}
 
 }
