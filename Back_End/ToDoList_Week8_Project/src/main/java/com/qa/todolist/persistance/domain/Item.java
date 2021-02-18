@@ -26,7 +26,7 @@ public class Item {
 	@ManyToOne
 	private Bag bag;
 
-	public Item(@NotNull String itemName, @NotNull double price, Bag bag) {
+	public Item(String itemName, double price, Bag bag) {
 		super();
 		this.itemName = itemName;
 		this.price = price;
