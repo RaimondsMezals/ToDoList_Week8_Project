@@ -1,9 +1,4 @@
 body {
-    background-color: #e1fbff;
+    background-color: #f6f4ff;
 }
-[id*=mainNavBar]{
-    background-color: #e0eaff;
-}
-[id*=navbarNav]{
-    background-color: #d3e1ff;
-}
+
