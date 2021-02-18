@@ -2,125 +2,151 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Items Table</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" href="../CssTDL/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items Table</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CssTDL/index.css">
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid" id="mainNavBar">
-        <a class="navbar-brand fs-2 fw-bolder">Week 8 Project To Do List</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active fs-2" aria-current="page" href="../index.html">
-                        <div class="container fst-italic fw-bold">Home</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="text-center">
-        <br />
-        <br />
-        <h1 class="fst-italic fs-1 fw-bolder">Items Modification Table</h1>
-        <br />
-        <br />
-
-    </div>
-    <div class="container text-center">
-        <h1 class="fst-italic fs-3 fw-bolder">Create an Item!</h1>
-        <div class="row">
-
-            <div class="col-sm">
-                <p>Input List Name</p>
-                <input type="text" class="form-control" id="listName" placeholder="List Name:" />
-            </div>
-
-        </div>
-        <br />
-        <p id="addListPara" class="fs-4 fw-bold"></p>
-        <br />
-        <button type="button" class="btn btn-primary addButton" id="addListBtn">Add List</button>
-        <br />
-        <br />
-        <h1 class="fst-italic fs-3 fw-bold text-center">Read</h2>
-            <div class="col-sm">
-                <p>Input Existing To Do List id to Read by id or leave it empty to read all To Do Lists</p>
-                <input type="number" class="form-control" id="listIdToRead" placeholder="Id to read:" />
-            </div>
-            <br />
-            <h2 class="fst-italic fs-3 fw-bold text-center">Stored</h2>
-            <br />
-            <div class="currentLists text-center fst-italic fs-4 fw-bold" id="thisList"></div>
-            <br />
-            <div class="currentLists text-center fs-4 fw-bolder" id="curentListId"></div>
-            <button type="button" class="btn btn-primary" id="readListIdBtn">Read This List</button>
-            <br />
-    </div>
-    <br />
-    <div class="container text-center">
-        <h1 class="fst-italic fs-3 fw-bolder">Update a To Do List</h1>
-        <div class="row">
-
-            <div class="col-sm">
-                <p>Input Existing To Do List id</p>
-                <input type="number" class="form-control" id="listId" placeholder="To Do List id:" />
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <div class="container-fluid" id="mainNavBar">
+            <a class="navbar-brand fs-2 fw-bolder position-absolute top-0 end-0">Week 8 Project To Do List</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active fs-2" aria-current="page" href="../index.html">
+                            <div class="container fst-italic fw-bold">Home</div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="col-sm">
-            <p>Update To Do List Name</p>
-            <input type="text" class="form-control" id="updateListName" placeholder="Update To Do List Name:" />
-        </div>
-        <br />
-        <p id="updateListPara" class="fs-4 fw-bold"></p>
-        <br />
-        <button type="button" class="btn btn-primary" id="updateListBtn">Update List</button>
-        <br />
-    </div>
-    <br />
-    <div class="container text-center">
-        <h1 class="fst-italic fs-3 fw-bolder">Delete a To Do List</h1>
-        <div class="row">
+    </nav>
 
-            <div class="col-sm">
-                <p>Input Existing To Do List id to Delete</p>
-                <input type="number" class="form-control" id="listIdToDelete" placeholder="To Do List id:" />
+
+
+    <div class="container">
+        <div class="text-center">
+            <br />
+            <br />
+            <h1 class="fst-italic fs-1 fw-bolder">Item Modification Table</h1>
+            <br />
+            <br />
+
+        </div>
+
+        <div class="container text-center shadow-none p-3 mb-5 bg-light rounded">
+            <h1 class="fst-italic fs-3 fw-bolder">Create an Item!</h1>
+            <div class="row">
+
+                <div class="col-sm">
+                    <p>Input Item Name</p>
+                    <input type="text" class="form-control" id="itemName" placeholder="Item Name:" />
+                </div>
+                <div class="col-sm">
+                    <p>Input Item Price</p>
+                    <input type="number" class="form-control" id="itemPrice" placeholder="Item Price:" />
+                </div>
+                <div class="col-sm">
+                    <p>Input Bag Id</p>
+                    <input type="number" class="form-control" id="bagId" placeholder="Bag Id:" />
+                </div>
+
             </div>
+            <br />
+            <p id="addListPara" class="fs-4 fw-bold"></p>
+            <br />
+            <button type="button" class="btn btn-primary addButton" id="addListBtn">Add List</button>
+
+            <br />
+
         </div>
+
+        <div class="container text-center shadow-none p-3 mb-5 bg-light rounded">
+
+            <br />
+            <h1 class="fst-italic fs-3 fw-bold text-center">Read</h2>
+                <div class="col-sm">
+                    <p>Input Existing Item id to Read by id or leave it empty to read all Items</p>
+                    <input type="number" class="form-control" id="listIdToRead" placeholder="Id to read:" />
+                </div>
+                <br />
+
+                <h2 class="fst-italic fs-3 fw-bold text-center">Stored</h2>
+                <br />
+                <div class="currentLists text-center fst-italic fs-4 fw-bold text-warning bg-dark" id="thisList"></div>
+                <br />
+                <div class="currentLists text-center fs-4 fw-bolder" id="curentListId"></div>
+                <button type="button" class="btn btn-primary" id="readListIdBtn">Read Item</button>
+                <br />
+
+        </div>
+
+
+        <div class="container text-center shadow-none p-3 mb-5 bg-light rounded">
+            <h1 class="fst-italic fs-3 fw-bolder">Update an Item</h1>
+            <div class="row">
+
+                <div class="col-sm">
+                    <p>Input Existing Item id</p>
+                    <input type="number" class="form-control" id="listId" placeholder="Item id:" />
+                </div>
+            </div>
+            <div class = "row">
+                <div class="col-sm">
+                    <p>Update Item Name</p>
+                    <input type="text" class="form-control" id="updateListName" placeholder="Item Name:" />
+                </div>
+                <div class="col-sm">
+                    <p>Update Item Price</p>
+                    <input type="number" class="form-control" id="updateItemPrice" placeholder="Item Price:" />
+                </div>
+            </div>
+            <br />
+            <p id="updateListPara" class="fs-4 fw-bold"></p>
+            <br />
+            <button type="button" class="btn btn-primary" id="updateListBtn">Update Item</button>
+            <br />
+        </div>
+
+        <div class="container text-center shadow-none p-3 mb-5 bg-light rounded">
+            <h1 class="fst-italic fs-3 fw-bolder">Delete an Item</h1>
+            <div class="row">
+
+                <div class="col-sm">
+                    <p>Input Existing Item id to Delete</p>
+                    <input type="number" class="form-control" id="listIdToDelete" placeholder="Item id:" />
+                </div>
+            </div>
+            <br />
+            <p id="deleteListPara" class="fs-4 fw-bold"></p>
+            <br />
+            <button type="button" class="btn btn-primary" id="deleteListBtn">Delete Item</button>
+            <br />
+        </div>
+
         <br />
-        <p id="deleteListPara" class="fs-4 fw-bold"></p>
-        <br />
-        <button type="button" class="btn btn-primary" id="deleteListBtn">Delete List</button>
-        <br />
+
+
+
+
     </div>
 
-    <br />
 
 
-
-
-</div>
-
-
-
-  <script src="../JavaScrptTDL/ItemsJS.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"></script>
+    <script src="../JavaScrptTDL/ItemsJS.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

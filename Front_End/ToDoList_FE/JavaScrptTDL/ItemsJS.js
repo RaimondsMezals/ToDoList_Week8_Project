@@ -5,10 +5,13 @@ const updateListBtn = document.querySelector("#updateListBtn");
 const deleteListBtn = document.querySelector("#deleteListBtn");
 const readIdBtn = document.querySelector("#readListIdBtn");
 
-const listName = document.querySelector("#listName");
+const itemName = document.querySelector("#itemName");
+const itemPrice = document.querySelector("#itemPrice");
+const bagId = document.querySelector("#bagId");
 const listIdToDelete = document.querySelector("#listIdToDelete");
 const listId = document.querySelector("#listId");
 const updateListName = document.querySelector("#updateListName");
+const updateItemPrice = document.querySelector("#updateItemPrice");
 const listIdToRead = document.querySelector("#listIdToRead");
 
 let successAddL = document.querySelector("#addListPara");
@@ -22,9 +25,13 @@ let failureDeleteL = document.querySelector("#deleteListPara");
 
 let readIdL = document.querySelector("#thisList");
 
-const getListName = () => {
+const getItem = () => {
     const data = {
-        "listName": listName.value
+        "itemName": itemName.value,
+        "price": itemPrice.value,
+        "bag": {
+            "id": bagId.value
+        }
     };
     return data;
 }
@@ -33,9 +40,10 @@ const getlistId = () => {
     const data = listId.value;
     return data;
 }
-const getUpdateListName = () => {
+const getUpdateItem = () => {
     const data = {
-        "listName": updateListName.value
+        "itemName": updateListName.value,
+        "price": updateItemPrice.value,
     };
     return data;
 }
@@ -50,19 +58,19 @@ const getReadListId = () => {
     return data;
 }
 
-const createBag = () => {
-    fetch("http://localhost:9090/bag/create", {
+const createItem = () => {
+    fetch("http://localhost:9090/item/create", {
         method: `POST`,
-        body: JSON.stringify(getListName()),
+        body: JSON.stringify(getItem()),
         headers: {
             "Content-type": "application/json"
-        },
+        }
     })
         .then((res) => {
             if (res.status == 201) {
-                successAddL.innerHTML = "Successfully Created a (" + listName.value + ") List";
+                successAddL.innerHTML = "Successfully Created a (" + itemName.value + ") Item";
             } else {
-                failureAddL.innerHTML = "Failed to create a (" + listName.value + ") List";
+                failureAddL.innerHTML = "Failed to create a (" + itemName.value + ") Item";
                 console.error(res.status);
             }
             res.json()
@@ -75,19 +83,19 @@ const createBag = () => {
         })
 }
 
-const updateBag = () => {
-    fetch("http://localhost:9090/bag/update/" + getlistId(), {
+const updateItem = () => {
+    fetch("http://localhost:9090/item/update/" + getlistId(), {
         method: `PUT`,
-        body: JSON.stringify(getUpdateListName()),
+        body: JSON.stringify(getUpdateItem()),
         headers: {
             "Content-type": "application/json"
         },
     })
         .then((res) => {
             if (res.status == 202) {
-                successUpdateL.innerHTML = "Successfully Updated (" + updateListName.value + ") List";
+                successUpdateL.innerHTML = "Successfully Updated (" + updateListName.value + ") Item";
             } else {
-                failureUpdateL.innerHTML = "Failed to update (" + updateListName.value + ") List";
+                failureUpdateL.innerHTML = "Failed to update (" + updateListName.value + ") Item";
                 console.error(res.status);
             }
             res.json()
@@ -100,16 +108,16 @@ const updateBag = () => {
         });
 }
 
-const deleteBag = () => {
-    fetch("http://localhost:9090/bag/delete/" + getListIdToDelete(), {
+const deleteItem = () => {
+    fetch("http://localhost:9090/item/delete/" + getListIdToDelete(), {
         method: "DELETE"
     })
         .then((data) => {
             if (data.status == 204) {
                 console.info(`Request was all good with json response ${data}`)
-                successDeleteL.innerHTML = "Deleted a List with id (" + listIdToDelete.value + ")";
+                successDeleteL.innerHTML = "Deleted an Item with id (" + listIdToDelete.value + ")";
             } else {
-                failureDeleteL.innerHTML = "List with id (" + listIdToDelete.value + ") does not exist";
+                failureDeleteL.innerHTML = "Item with id (" + listIdToDelete.value + ") does not exist";
                 console.error(data.status);
             }
         })
@@ -118,11 +126,11 @@ const deleteBag = () => {
         });
 }
 
-const readBagById = () => {
-    fetch("http://localhost:9090/bag/read/" + getReadListId())
+const readItemById = () => {
+    fetch("http://localhost:9090/item/read/" + getReadListId())
         .then((response) => {
             if (response.status !== 200) {
-                readIdL.innerHTML = "List with id (" + getReadListId() + ") does not exist";
+                readIdL.innerHTML = "Item with id (" + getReadListId() + ") does not exist";
                 console.error(`status ${response.status}`);
                 return;
             }
@@ -140,7 +148,7 @@ const readBagById = () => {
 
 
 
-addListBtn.addEventListener("click", createBag);
-updateListBtn.addEventListener("click", updateBag);
-deleteListBtn.addEventListener("click", deleteBag);
-readIdBtn.addEventListener("click", readBagById);
+addListBtn.addEventListener("click", createItem);
+updateListBtn.addEventListener("click", updateItem);
+deleteListBtn.addEventListener("click", deleteItem);
+readIdBtn.addEventListener("click", readItemById);
