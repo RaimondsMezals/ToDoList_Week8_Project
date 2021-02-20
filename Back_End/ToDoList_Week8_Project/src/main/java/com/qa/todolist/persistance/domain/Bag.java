@@ -13,11 +13,13 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Bag {
 
@@ -37,9 +39,10 @@ public class Bag {
 		this.listName = listName;
 	}
 
-	public Bag(String listName) {
+	public Bag(String listName, List<Item> items) {
 		super();
 		this.listName = listName;
+		this.items = items;
 	}
 
 }
