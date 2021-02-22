@@ -12,9 +12,13 @@ What thing you will need in order to use this system
 
 
 Software:
+
 Appropriate java version (At least java 8)
+
 Apache Maven
+
 Integrated Development Environment (IDE) In this case SpringToolSuite4
+
 MySQL or a H2 database
 
 Maven and java can both be downloaded online and extracted as zip files. In addition to this you will need to set paths for both maven and java within system environment variables.
