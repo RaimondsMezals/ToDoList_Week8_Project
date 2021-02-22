@@ -17,7 +17,6 @@ public class SpringBeanUtil {
 
 	private static String[] getNullPropName(Object src) {
 		final BeanWrapper wrappedSourcerObj = new BeanWrapperImpl(src);
-		// loop through the data we pass and then do something
 		Set<String> propName = new HashSet<>();
 		for (PropertyDescriptor descriptor : wrappedSourcerObj.getPropertyDescriptors()) {
 			if (wrappedSourcerObj.getPropertyValue(descriptor.getName()) == null)
